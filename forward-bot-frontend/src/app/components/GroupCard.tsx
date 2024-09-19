@@ -1,6 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, Calendar, Shield, MessageCircle, User, Lock } from 'lucide-react';
+import { GroupParticipant } from '@whiskeysockets/baileys';
+import Image from 'next/image';
+
+
 
 export interface GroupMetadata {
     id: string
@@ -31,7 +35,7 @@ export interface GroupMetadata {
     /** number of group participants */
     size?: number
     // Baileys modified array
-    participants: any[]
+    participants: GroupParticipant[]
     ephemeralDuration?: number
     inviteCode?: string
     /** the person who added you to group or changed some setting in group */
@@ -39,23 +43,9 @@ export interface GroupMetadata {
     imageUrl: string | null;
 }
 
-
-interface Rule {
-    id: number;
-    from: string;
-    to: string;
-}
-
 export interface GroupCardProps {
     group?: GroupMetadata;
     loading: boolean;
-}
-
-interface ForwardingRuleProps {
-    rule: Rule;
-    groups: GroupMetadata[];
-    onDelete: (id: number) => void;
-    onChange: (id: number, field: 'from' | 'to', value: string) => void;
 }
 
 const GroupCard: React.FC<GroupCardProps> = ({ group, loading }) => {
@@ -77,7 +67,7 @@ const GroupCard: React.FC<GroupCardProps> = ({ group, loading }) => {
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.3 }}
                 >
-                    <img
+                    <Image
                         src={group?.imageUrl || 'https://cdn.pixabay.com/photo/2021/07/02/04/48/user-6380868_640.png'}
                         alt={group?.subject}
                         className="w-full h-full object-cover"

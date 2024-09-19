@@ -11,6 +11,24 @@ interface PollOption {
     text: string;
 }
 
+interface Message {
+    caption: string;
+    sender: string;
+    isPrivate: boolean;
+    isGroup: boolean;
+    groupName?: string;
+    isMultiple: boolean;
+    recipients?: string[];
+    schedule?: string;
+    type: PostType;
+    pollOptions?: string[];
+    media?: {
+        filename: string;
+        mimetype: string;
+    };
+}
+
+
 const PostScheduler: React.FC = () => {
     const router = useRouter();
     const [caption, setCaption] = useState('');
@@ -61,7 +79,7 @@ const PostScheduler: React.FC = () => {
     };
 
     const serializeMessage = () => {
-        const message: any = {
+        const message: Message = {
             caption,
             sender,
             isPrivate,

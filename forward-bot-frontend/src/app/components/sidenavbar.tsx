@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react'
 import { FiMenu, FiX, FiHome } from 'react-icons/fi'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 
 type NavItem = {
     icon: React.ElementType
@@ -86,7 +87,7 @@ export default function EnhancedGlowingSidebar() {
                     </div>
                     <div className="w-full relative z-10 flex items-center">
                         <div className="mr-4">
-                            <img
+                            <Image
                                 src={user.avatar || ''}
                                 alt={user.name || 'User'}
                                 className="w-12 h-12 rounded-full object-cover border-2 border-gray-300"
