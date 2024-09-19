@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Search, Plus, Save, X, AlertTriangle, DeleteIcon, Calendar, ArrowRightCircle, ArrowRight, ClipboardCheckIcon, AlertCircle } from 'lucide-react';
+import { Search, Plus, X, ArrowRight, ClipboardCheckIcon, AlertCircle } from 'lucide-react';
 import GroupCard from '../components/GroupCard';
 import { motion, AnimatePresence } from 'framer-motion';
+import { GroupParticipant } from '@whiskeysockets/baileys';
 
 export interface GroupMetadata {
     id: string
@@ -34,7 +35,7 @@ export interface GroupMetadata {
     /** number of group participants */
     size?: number
     // Baileys modified array
-    participants: any[]
+    participants: GroupParticipant[]
     ephemeralDuration?: number
     inviteCode?: string
     /** the person who added you to group or changed some setting in group */
@@ -130,7 +131,7 @@ const LightgrayColorPaletteGroups: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [forwardingRules, setForwardingRules] = useState<Rule[]>([]);
     const [showSaveChanges, setShowSaveChanges] = useState<boolean>(false);
-    const [selectedGroups, setSelectedGroups] = useState<any[]>([]);
+    const [selectedGroups, setSelectedGroups] = useState([]);
     const [groupToDelete, setGroupToDelete] = useState<string | null>(null);
 
     const confirmDelete = (groupId: string | null) => {
